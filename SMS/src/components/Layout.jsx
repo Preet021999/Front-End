@@ -35,37 +35,37 @@ const Layout = () => {
       <div
         style={{
           flex: 1,
-          marginLeft: isSidebarOpen ?  "50px" :"190px", // Dynamically adjust content based on sidebar state
+          marginLeft: isSidebarOpen ? "190px" : "50px", // Dynamically adjust content based on sidebar state
           transition: "margin-left 0.3s ease", // Smooth transition for opening/closing sidebar
           padding: "20px", // Optional padding for content
         }}
       >
-      <div
-        style={{
-          border: "1px solid #fff", // Border around the div
-          padding: "10px",
-          borderRadius: "10px",
-          background: "#80808036",
-          marginLeft: "20px",
-          display: "flex",
-          alignItems: "center", // Align items vertically in the center
-        }}
-      >
-      <h4 style={{ flex: 1, margin: 0 }}>SMS</h4> {/* This will push the button to the right */}
-      <button
-          onClick={handleLogout}
+        <div
           style={{
-            padding: "10px 20px",
-            backgroundColor: "#007bff",
-            color: "#fff",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
+            border: "1px solid #fff", // Border around the div
+            padding: "10px",
+            borderRadius: "10px",
+            background: "#80808036",
+            display: "flex",
+            alignItems: "center", // Align items vertically in the center
+            marginBottom: "20px", // Add margin bottom for spacing
           }}
         >
-        Logout
-      </button>
-    </div>
+          <h4 style={{ flex: 1, margin: 0 }}>SMS</h4> {/* This will push the button to the right */}
+          <button
+            onClick={handleLogout}
+            style={{
+              padding: "10px 20px",
+              backgroundColor: "#007bff",
+              color: "#fff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            Logout
+          </button>
+        </div>
         <Outlet />
       </div>
     </div>

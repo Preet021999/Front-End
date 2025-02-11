@@ -37,7 +37,7 @@ const Sidebar = ({ isOpen, onToggle }) => {
               width={isNotActive ? "20" : "70"}
               alt="User"
             />
-            <h3>User Name</h3>
+            <h3 className={isNotActive ? "hidden" : ""}>User Name</h3>
           </div>
 
           <ul className="list-unstyled components">
