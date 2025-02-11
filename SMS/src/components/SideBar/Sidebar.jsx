@@ -15,6 +15,10 @@ const Sidebar = ({ isOpen, onToggle }) => {
     setNotActive(newState);
     onToggle(newState); // Notify the parent component to update the sidebar state
   };
+  const handleOptionClick = () => {
+    setNotActive(true);
+    onToggle(true);
+  };
 
   return (
     <div>
@@ -43,11 +47,11 @@ const Sidebar = ({ isOpen, onToggle }) => {
           <ul className="list-unstyled components">
             <li className="list-item">
               <i className="fas fa-briefcase icon-color"></i>
-              <Link to="/dashboard/employee-master">Employee Master</Link>
+              <Link to="/dashboard/employee-master" onClick={handleOptionClick}>Employee Master</Link>
             </li>
             <li className="list-item">
               <i className="fas fa-building icon-color"></i>
-              <Link to="/organizations">Organizations</Link>
+              <Link to="/organizations" onClick={handleOptionClick}>Organizations</Link>
             </li>
             <li className="list-item">
               <i className="fas fa-user-alt icon-color"></i>
@@ -55,6 +59,7 @@ const Sidebar = ({ isOpen, onToggle }) => {
                 to="#"
                 onClick={() => setDropdownActive(!isDropdownActive)}
                 className="dropdown-toggle"
+                
               >
                 My Space
               </Link>
@@ -66,26 +71,26 @@ const Sidebar = ({ isOpen, onToggle }) => {
                 }
               >
                 <li className="dropdown-item">
-                  <Link to="/portfolio">Portfolio</Link>
+                  <Link to="/portfolio" onClick={handleOptionClick}>Portfolio</Link>
                 </li>
                 <li className="dropdown-item">
-                  <Link to="/personal-details">Personal Details</Link>
+                  <Link to="/personal-details" onClick={handleOptionClick}>Personal Details</Link>
                 </li>
                 <li className="dropdown-item">
-                  <Link to="/additional-info">Additional Info</Link>
+                  <Link to="/additional-info" onClick={handleOptionClick}>Additional Info</Link>
                 </li>
                 <li className="dropdown-item">
-                  <Link to="/personal-background">Personal Background</Link>
+                  <Link to="/personal-background" onClick={handleOptionClick}>Personal Background</Link>
                 </li>
               </ul>
             </li>
             <li className="list-item">
               <i className="fas fa-history icon-color"></i>
-              <Link to="/request-history">Request History</Link>
+              <Link to="/request-history" onClick={handleOptionClick}>Request History</Link>
             </li>
             <li className="list-item">
               <i className="fas fa-sitemap icon-color"></i>
-              <Link to="/organization-profile">Organization</Link>
+              <Link to="/organization-profile" onClick={handleOptionClick}>Organization</Link>
             </li>
           </ul>
         </nav>
