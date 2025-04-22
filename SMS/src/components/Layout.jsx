@@ -35,7 +35,7 @@ const Layout = () => {
       <div
         style={{
           flex: 1,
-          marginLeft: isSidebarOpen ? "100px" : "250px", // Dynamically adjust content based on sidebar state
+          marginLeft: isSidebarOpen ? "100px" : "300px", // Dynamically adjust content based on sidebar state
           transition: "margin-left 0.3s ease", // Smooth transition for opening/closing sidebar
           padding: "20px", // Optional padding for content
         }}

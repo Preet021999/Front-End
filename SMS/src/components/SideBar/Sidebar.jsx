@@ -47,12 +47,25 @@ const Sidebar = ({ isOpen, onToggle }) => {
           <ul className="list-unstyled components">
             <li className="list-item">
               <i className="fas fa-briefcase icon-color"></i>
-              <Link to="/dashboard/employee-master" onClick={handleOptionClick}>Employee Master</Link>
+              <Link to="/dashboard" onClick={handleOptionClick}>Dashboard</Link>
             </li>
             <li className="list-item">
               <i className="fas fa-building icon-color"></i>
-              <Link to="/organizations" onClick={handleOptionClick}>Organizations</Link>
+              <Link to="/student-management" onClick={handleOptionClick}>Student Management</Link>
             </li>
+            <li className="list-item">
+              <i className="fas fa-briefcase icon-color"></i>
+              <Link to="/attendance-management" onClick={handleOptionClick}>Attendance Management</Link>
+            </li>
+            <li className="list-item">
+              <i className="fas fa-building icon-color"></i>
+              <Link to="/result-generation" onClick={handleOptionClick}>Generate Results</Link>
+            </li>
+            <li className="list-item">
+              <i className="fas fa-building icon-color"></i>
+              <Link to="/circular-management" onClick={handleOptionClick}>Manage Circulars</Link>
+            </li>
+            
             <li className="list-item">
               <i className="fas fa-user-alt icon-color"></i>
               <Link
@@ -84,14 +97,7 @@ const Sidebar = ({ isOpen, onToggle }) => {
                 </li>
               </ul>
             </li>
-            <li className="list-item">
-              <i className="fas fa-history icon-color"></i>
-              <Link to="/request-history" onClick={handleOptionClick}>Request History</Link>
-            </li>
-            <li className="list-item">
-              <i className="fas fa-sitemap icon-color"></i>
-              <Link to="/organization-profile" onClick={handleOptionClick}>Organization</Link>
-            </li>
+            
           </ul>
         </nav>
       </div>

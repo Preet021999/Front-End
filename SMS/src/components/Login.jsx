@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles.css"; // Adjust the path based on your folder structure
 import loginImage from '../assets/Login.jpg';
+import Button from 'react-bootstrap/Button';
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -41,7 +42,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button type="submit">Login</button>
+            <div className="d-flex justify-content-center"><Button variant="outline-primary" type="submit">Login</Button></div>
           </form>
         </div>
     </div>
