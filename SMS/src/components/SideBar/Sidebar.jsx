@@ -28,7 +28,7 @@ const Sidebar = ({ isOpen, onToggle }) => {
             type="button"
             id="sidebarCollapse"
             onClick={handleToggle}
-            className="btn btn-custom"
+            className=""
           >
             <span className={isNotActive ? "" : "hidden"}>{barsIcon}</span>
             <span className={isNotActive ? "hidden" : ""}>{crossIcon}</span>
@@ -66,6 +66,7 @@ const Sidebar = ({ isOpen, onToggle }) => {
               <Link to="/circular-management" onClick={handleOptionClick}>Manage Circulars</Link>
             </li>
             
+{/*             
             <li className="list-item">
               <i className="fas fa-user-alt icon-color"></i>
               <Link
@@ -97,7 +98,7 @@ const Sidebar = ({ isOpen, onToggle }) => {
                 </li>
               </ul>
             </li>
-            
+            */}
           </ul>
         </nav>
       </div>

@@ -3,14 +3,24 @@
     left: 0;
     top: 0;
     height: 100vh;
-    background-color: #215cad;
+    background-color: #7d59ad;
     border-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 #sidebarCollapse{
     position: absolute;
     top: .5rem;
     right: 1.3rem;
     cursor: pointer;
+    background-color: transparent !important;
+    color: white !important;
+    border-color: transparent !important;
+}
+#sidebarCollapse:hover{
+    background-color: #7d59ad !important;
+    color: rgb(0, 0, 0) !important;
+    border-color: transparent !important;
 }
 #sidebar{
     height: fixed;
@@ -31,7 +41,7 @@
     padding-left: .5rem;
 }
 .icon-color{
-    color: #738a9b;
+    color: #ffffff;
 }
 .btn-custom{
     background-color: #c4b9b9;

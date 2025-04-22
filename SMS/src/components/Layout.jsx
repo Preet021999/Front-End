@@ -58,6 +58,7 @@ const Layout = () => {
               padding: "10px 20px",
               backgroundColor: "#007bff",
               color: "#fff",
+              icon:"fas fa-sign-out",
               border: "none",
               borderRadius: "5px",
               cursor: "pointer",
