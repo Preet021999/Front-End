@@ -21,7 +21,25 @@ const CircularsManagement = () => {
     issueDate: new Date().toISOString().split('T')[0],
     targetAudience: []
   });
-
+  const clearData = () =>{
+    setFormData({
+      title: "",
+      content: "",
+      category: "",
+      issueDate: new Date().toISOString().split('T')[0],
+      targetAudience: []
+    });
+  }
+  const editCircular = (circular) => {
+    setFormData({
+      title: circular.title,
+      content: circular.content,
+      category: circular.category,
+      issueDate: circular.issueDate,
+      targetAudience: circular.targetAudience
+    });
+    setShow(true);
+  };
   // Mock data
   useEffect(() => {
     const mockCirculars = [
@@ -58,8 +76,10 @@ const CircularsManagement = () => {
   }, []);
   
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  
+  const handleShow = () => {
+    setShow(true);
+    clearData();
+  }
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -182,7 +202,10 @@ const CircularsManagement = () => {
                 ))}
               </div>
               <div className="d-flex justify-content-end">
-                <Button variant="outline-primary" size="sm" className="me-2">
+                <Button variant="outline-primary" size="sm" className="me-2"
+                    onClick={() =>{
+                      editCircular(circular);
+                    }}>
                   Edit
                 </Button>
                 <Button 

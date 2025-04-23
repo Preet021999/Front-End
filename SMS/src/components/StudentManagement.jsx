@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import Table from 'react-bootstrap/Table';
+import Table from "react-bootstrap/Table";
 import Modal from "react-bootstrap/Modal";
 import OutlineButton from "./CommonLayout/OutlineButton.jsx";
 import { FormControl, InputGroup } from "react-bootstrap";
@@ -27,9 +27,9 @@ const StudentManagement = () => {
     parentName: "",
     contactNumber: "",
     address: "",
-    email: ""
+    email: "",
   });
-  
+
   // Mock data for initial display
   useEffect(() => {
     setStudents([
@@ -43,7 +43,11 @@ const StudentManagement = () => {
         class: "10",
         section: "A",
         parentName: "David Smith",
-        contactNumber: "555-123-4567"
+        contactNumber: "555-123-4567",
+        dateOfBirth: "2005-05-15",
+        gender: "Male",
+        email: "david@gmail.com",
+        address: "123 Main StP",
       },
       {
         id: 2,
@@ -55,7 +59,11 @@ const StudentManagement = () => {
         class: "10",
         section: "A",
         parentName: "Michael Johnson",
-        contactNumber: "555-987-6543"
+        contactNumber: "555-987-6543",
+        dateOfBirth: "2005-05-15",
+        gender: "Female",
+        email: "emily@gmail.com",
+        address: "123 Main StP",
       },
       {
         id: 3,
@@ -67,59 +75,117 @@ const StudentManagement = () => {
         class: "9",
         section: "B",
         parentName: "Sarah Williams",
-        contactNumber: "555-456-7890"
-      }
+        contactNumber: "555-456-7890",
+        dateOfBirth: "2005-05-15",
+        gender: "Male",
+        email: "aiden@gmail.com",
+        address: "123 Main StP",
+      },
     ]);
   }, []);
-  
+
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  
+  const handleShow = () => {setShow(true);clearData();};
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  const clearData = () => {
+    setFormData({
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      admissionNumber: "",
+      rollNumber: "",
+      dob: "",
+      gender: "",
+      class: "",
+      section: "",
+      parentName: "",
+      contactNumber: "",
+      address: "",
+      email: "",
+    });
+  };
+  const viewStudentDetails = (student) => {
+    setFormData({
+      firstName: student.firstName,
+      middleName: student.middleName,
+      lastName: student.lastName,
+      admissionNumber: student.admissionNumber,
+      rollNumber: student.rollNumber,
+      dob: student.dateOfBirth,
+      gender: student.gender,
+      class: student.class,
+      section: student.section,
+      parentName: student.parentName,
+      contactNumber: student.contactNumber,
+      address: student.address,
+      email: student.email,
+    });
+    setShow(true);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const newStudent = {
       id: students.length + 1,
       ...formData,
-      admissionNumber: `CPS2025${String(students.length + 1).padStart(3, '0')}`
+      admissionNumber: `CPS2025${String(students.length + 1).padStart(3, "0")}`,
     };
-    
+
     setStudents([...students, newStudent]);
-    setFormData({ 
-      firstName: "", middleName: "", lastName: "", admissionNumber: "", 
-      rollNumber: "", dob: "", gender: "", class: "", section: "", 
-      parentName: "", contactNumber: "", address: "", email: "" 
+    setFormData({
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      admissionNumber: "",
+      rollNumber: "",
+      dob: "",
+      gender: "",
+      class: "",
+      section: "",
+      parentName: "",
+      contactNumber: "",
+      address: "",
+      email: "",
     });
     handleClose();
   };
-  
+
   // Filter students based on search and class filter
-  const filteredStudents = students.filter(student => {
-    const matchesSearch = 
+  const filteredStudents = students.filter((student) => {
+    const matchesSearch =
       student.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       student.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      student.admissionNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      student.admissionNumber
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
       student.rollNumber.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesClass = selectedClass === "" || student.class === selectedClass;
-    
+
+    const matchesClass =
+      selectedClass === "" || student.class === selectedClass;
+
     return matchesSearch && matchesClass;
   });
 
   return (
-    <div className="container-fluid mt-4 p-3 border rounded" style={{ background: "#80808036" }}>
+    <div
+      className="container-fluid mt-4 p-3 border rounded"
+      style={{ background: "#80808036" }}
+    >
       <Row className="align-items-center mb-4">
         <Col xs={12} md={8}>
           <h2>Student Management</h2>
         </Col>
         <Col xs={12} md={4} className="d-flex justify-content-end">
-          <OutlineButton variant="primary" onClick={handleShow} ButtonName={'Add Student'} />
+          <OutlineButton
+            variant="primary"
+            onClick={handleShow}
+            ButtonName={"Add Student"}
+          />
         </Col>
       </Row>
-      
+
       <Row className="mb-4">
         <Col md={6}>
           <InputGroup>
@@ -131,8 +197,8 @@ const StudentManagement = () => {
           </InputGroup>
         </Col>
         <Col md={6}>
-          <Form.Select 
-            value={selectedClass} 
+          <Form.Select
+            value={selectedClass}
             onChange={(e) => setSelectedClass(e.target.value)}
           >
             <option value="">All Classes</option>
@@ -143,7 +209,7 @@ const StudentManagement = () => {
           </Form.Select>
         </Col>
       </Row>
-      
+
       <Row>
         <Col xs={12}>
           <Table striped bordered hover responsive>
@@ -160,19 +226,41 @@ const StudentManagement = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredStudents.map(student => (
+              {filteredStudents.map((student) => (
                 <tr key={student.id}>
                   <td>{student.admissionNumber}</td>
                   <td>{student.rollNumber}</td>
-                  <td>{`${student.firstName} ${student.middleName ? student.middleName + ' ' : ''}${student.lastName}`}</td>
+                  <td>{`${student.firstName} ${
+                    student.middleName ? student.middleName + " " : ""
+                  }${student.lastName}`}</td>
                   <td>{student.class}</td>
                   <td>{student.section}</td>
                   <td>{student.parentName}</td>
                   <td>{student.contactNumber}</td>
                   <td>
-                    <Button variant="info" size="sm" className="me-2">View</Button>
-                    <Button variant="warning" size="sm" className="me-2">Edit</Button>
-                    <Button variant="danger" size="sm">Delete</Button>
+                    <Button
+                      variant="info"
+                      size="sm"
+                      className="me-2"
+                      onClick={() => {
+                        viewStudentDetails(student);
+                      }}
+                    >
+                      View
+                    </Button>
+                    <Button
+                      variant="warning"
+                      size="sm"
+                      className="me-2"
+                      onClick={() => {
+                        viewStudentDetails(student);
+                      }}
+                    >
+                      Edit
+                    </Button>
+                    <Button variant="danger" size="sm">
+                      Delete
+                    </Button>
                   </td>
                 </tr>
               ))}
@@ -180,7 +268,7 @@ const StudentManagement = () => {
           </Table>
         </Col>
       </Row>
-      
+
       {/* Add Student Modal */}
       <Modal show={show} onHide={handleClose} centered size="lg">
         <Modal.Header closeButton>
@@ -225,7 +313,7 @@ const StudentManagement = () => {
                 </Form.Group>
               </Col>
             </Row>
-            
+
             <Row>
               <Col md={4}>
                 <Form.Group className="mb-3">
@@ -268,7 +356,7 @@ const StudentManagement = () => {
                 </Form.Group>
               </Col>
             </Row>
-            
+
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">
@@ -304,7 +392,7 @@ const StudentManagement = () => {
                 </Form.Group>
               </Col>
             </Row>
-            
+
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">
@@ -331,7 +419,7 @@ const StudentManagement = () => {
                 </Form.Group>
               </Col>
             </Row>
-            
+
             <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -342,7 +430,7 @@ const StudentManagement = () => {
                 required
               />
             </Form.Group>
-            
+
             <Form.Group className="mb-3">
               <Form.Label>Address</Form.Label>
               <Form.Control
@@ -354,12 +442,12 @@ const StudentManagement = () => {
                 required
               />
             </Form.Group>
-            
+
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
+              <Button variant="secondary" onClick={handleClose} name="close">
                 Close
               </Button>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" name="saveStudent">
                 Add Student
               </Button>
             </Modal.Footer>
