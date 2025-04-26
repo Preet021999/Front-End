@@ -28,6 +28,7 @@ const ResultGeneration = () => {
   
   // Mock student data
   useEffect(() => {
+    debugger;
     if (selectedClass && selectedSection) {
       const mockStudents = [
         { 
@@ -47,7 +48,7 @@ const ResultGeneration = () => {
           id: 2, 
           rollNumber: "002", 
           name: "Emily Johnson", 
-          class: "10", 
+          class: "11", 
           section: "A",
           marks: subjects.map(subject => ({ 
             subjectId: subject.id, 
@@ -60,7 +61,7 @@ const ResultGeneration = () => {
           id: 3, 
           rollNumber: "003", 
           name: "Aiden Williams", 
-          class: "10", 
+          class: "9", 
           section: "A",
           marks: subjects.map(subject => ({ 
             subjectId: subject.id, 
@@ -105,11 +106,30 @@ const ResultGeneration = () => {
     {
       id: 2,
       examName: "Mid-Term Examination",
-      class: "10",
+      class: "11",
       section: "A",
       studentId: 2,
       studentName: "Emily Johnson",
       rollNumber: "002",
+      totalObtained: 432,
+      totalMax: 500,
+      percentage: 86.4,
+      grades: [
+        { subjectName: "English", obtainedMarks: 90, maxMarks: 100, grade: "A" },
+        { subjectName: "Mathematics", obtainedMarks: 82, maxMarks: 100, grade: "B+" },
+        { subjectName: "Science", obtainedMarks: 88, maxMarks: 100, grade: "A" },
+        { subjectName: "Social Science", obtainedMarks: 78, maxMarks: 100, grade: "B" },
+        { subjectName: "Computer Science", obtainedMarks: 94, maxMarks: 100, grade: "A" }
+      ]
+    },
+    {
+      id: 3,
+      examName: "Mid-Term Examination",
+      class: "9",
+      section: "A",
+      studentId: 3,
+      studentName: "Aiden Williams",
+      rollNumber: "003",
       totalObtained: 432,
       totalMax: 500,
       percentage: 86.4,
@@ -216,7 +236,6 @@ const ResultGeneration = () => {
                   <option value="9">Class 9</option>
                   <option value="10">Class 10</option>
                   <option value="11">Class 11</option>
-                  <option value="12">Class 12</option>
                 </Form.Select>
               </Form.Group>
             </Col>
@@ -230,8 +249,6 @@ const ResultGeneration = () => {
                 >
                   <option value="">Select Section</option>
                   <option value="A">A</option>
-                  <option value="B">B</option>
-                  <option value="C">C</option>
                 </Form.Select>
               </Form.Group>
             </Col>
@@ -424,7 +441,6 @@ const ResultGeneration = () => {
                   <option value="9">Class 9</option>
                   <option value="10">Class 10</option>
                   <option value="11">Class 11</option>
-                  <option value="12">Class 12</option>
                 </Form.Select>
               </Form.Group>
             </Col>
